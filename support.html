@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ trợ & Liên hệ - THPT Chuyên Nguyễn Thiện Thành</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="animated-background">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <button onclick="window.location.href='index.html'" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Quay lại Trang Chủ
+    </button>
+
+    <div class="container" style="margin-top: 80px; max-width: 1200px; width: 100%;">
+        
+        <section class="page-section active">
+            <h2 class="gradient-text page-title" style="text-align: center;">Trung Tâm Hỗ Trợ</h2>
+            <p class="page-subtitle" style="text-align: center;">Gửi thắc mắc về bài tập, lỗi website hoặc đóng góp ý kiến cho chúng tôi.</p>
+
+            <div class="grid-layout" style="grid-template-columns: 1fr 1.5fr;">
+                
+                <div class="glass-card">
+                    <div class="card-icon-wrapper icon-green">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Thông tin liên hệ</h3>
+                    <p>Đội ngũ admin luôn sẵn sàng giải đáp thắc mắc của các bạn học sinh.</p>
+                    
+                    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--primary-color); width: 20px;"></i>
+                            <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+THPT+Chuy%C3%AAn+Nguy%E1%BB%85n+Thi%E1%BB%87n+Th%C3%A0nh,+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng,+Long+%C4%90%E1%BB%A9c,+Tr%C3%A0+Vinh,+Vi%E1%BB%87t+Nam/@9.9590947,106.343586,17z/data=!3m1!4b1!4m6!3m5!1s0x31a010a07da395cb:0x2ec6fdb004c7acd6!8m2!3d9.9592027!4d106.3460112!16s%2Fg%2F11b6_jwg2n?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#94a3b8'">
+                                Trường THPT Chuyên Nguyễn Thiện Thành
+                            </a>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--primary-color); width: 20px;"></i>
+                            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=jrjtXLCPZcwQgcjKGLqmfLGgWhtjlrkcmZkXSDZFBSPKNMbTCdjZjkQMqGCmCMQhfLFllgbZ" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#94a3b8'">
+                                clbtincntt84@gmail.com                            
+                            </a>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fab fa-facebook" style="color: var(--primary-color); width: 20px;"></i>
+                            <a href="https://web.facebook.com/profile.php?id=61555823012605&locale=vi_VN" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#94a3b8'">
+                                Fanpage CLB Tin Học Chuyên NTT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="width: 100%; max-width: 900px; margin: 0 auto; padding: 40px;">
+                <div class="card-icon-wrapper icon-green">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                    <h3>Hỗ trợ</h3>
+                    <p>Gửi thắc mắc, báo lỗi, đóng góp tài liệu hoặc ý kiến của bạn.</p>
+                <form id="supportForm" onsubmit="handleSupport(event)">
+                    
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" name="name" class="tool-input" placeholder="Nhập họ tên của bạn" required>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Thông tin liên hệ (Email và SĐT)</label>
+                        <input type="text" name="contact" class="tool-input" placeholder="mail: abc@gmail.com | SĐT:..." required>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Vấn đề cần hỗ trợ</label>
+                        <select name="category" class="tool-input" style="background-color: var(--bg-dark); color: var(--text-main);">
+                            <option value="Báo lỗi website">Báo lỗi website</option>
+                            <option value="Góp ý nội dung">Góp ý nội dung tài liệu</option>
+                            <option value="Hỏi đáp bài tập">Hỏi đáp bài tập</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Nội dung chi tiết</label>
+                        <textarea name="message" class="tool-input tool-textarea" rows="4" placeholder="Mô tả chi tiết vấn đề..." required></textarea>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label style="margin-bottom: 10px; display: block;">Đính kèm hình ảnh/tài liệu (Nếu có)</label>
+                        
+                        <div class="upload-area" id="dropZone">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <p class="upload-text">Nhấn để chọn hoặc kéo thả file vào đây</p>
+                            <p class="upload-hint">Hỗ trợ: .jpg, .png, .pdf, .doc (Tối đa 5MB)</p>
+                            
+                            <input type="file" id="fileInput" accept=".jpg,.png,.jpeg,.pdf,.doc,.docx" style="display: none;">
+                        </div>
+
+                        <div id="fileNameDisplay" class="file-chosen-info" style="display: none;">
+                            <i class="fas fa-check-circle" style="color: #10b981;"></i> 
+                            <span id="fileNameText">Tên file ở đây</span>
+                            <span class="remove-file" onclick="removeSelectedFile()"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-glow" style="width: 100%; justify-content: center; margin-top: 25px;">
+                        <i class="fas fa-paper-plane"></i> Gửi Yêu Cầu
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Hệ thống học liệu Tin học - THPT Chuyên Nguyễn Thiện Thành.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

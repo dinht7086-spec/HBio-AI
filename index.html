@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công nghệ Sinh học</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!-- Nền động Sinh học: Tế bào có nhân và màng -->
+    <div class="biology-background">
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+    </div>
+    <div class="scroll-watcher"></div>
+    <nav id="navbar">
+        <a href="#" class="nav-link active" onclick="showPage('home')"><i class="fas fa-home"></i> Trang Chủ</a>
+        <!--<a href="#" class="nav-link" onclick="showPage('algorithms')"><i class="fas fa-brain"></i> Thuật Toán</a>-->
+        <a href="#" class="nav-link" onclick="showPage('roadmap')"><i class="fas fa-project-diagram"></i> Lộ Trình</a>
+        <a href="#" class="nav-link" onclick="showPage('exams')"><i class="fas fa-trophy"></i> Đề Tham khảo</a>
+        <!--<a href="#" class="nav-link" onclick="showPage('solutions')"><i class="fas fa-code"></i> Lời Giải</a>-->
+        <a href="#" class="nav-link" onclick="showPage('resources')"><i class="fas fa-book"></i> Thư Viện</a>
+        <!--<a href="#" class="nav-link" onclick="showPage('courses')"><i class="fas fa-graduation-cap"></i> Khóa học</a>-->
+        <!--<a href="#" class="nav-link" onclick="showPage('playground')"><i class="fas fa-laptop-code"></i> Compiler</a>-->
+        <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Hỗ trợ</a>
+        <a href="https://web-aicntt.vercel.app/" class="nav-link"><i class="fa-solid fa-robot"></i>AI</a>
+    </nav>
+
+    <div class="container">
+    
+        <section id="home" class="page-section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <span class="sub-title">CỘNG ĐỒNG SINH HỌC</span>
+                    <h1> Giao lưu <span class="gradient-text"> SINH HỌC</span></h1>
+                    <p class="description">Nơi giao lưu học hỏi giữa những người có cùng đam mê</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#" onclick="showPage('resources')" class="btn-glow">
+                            <i class="fas fa-code"></i> Khám phá ngay
+                        </a>
+
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Tài liệu</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Đề thi</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Hỗ trợ AI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <img src="Logo.png" alt="Logo web" class="hero-logo">
+                </div>
+            </div>
+                <div class="news-section" style="margin-top: 80px; padding-bottom: 40px;">
+                
+                    <h2 class="gradient-text page-title" style="text-align: center; margin-bottom: 30px; font-size: 2rem;">
+                    <i class="far fa-newspaper"></i> Tin Tức & Sự Kiện
+                    </h2>
+
+                    <div class="glass-card hover-effect" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <div class="card-icon-wrapper icon-yellow" style="margin-right: 15px;">
+                                    <i class="far fa-newspaper"></i>
+                                </div>
+                                <h3 style="margin: 0; font-size: 1.5rem; color: var(--text-main);">Trang web Bộ Giáo dục và Đào tạo</h3>
+                            </div>
+                            <p style="color: var(--text-sub); line-height: 1.6; margin-bottom: 0;">
+                               Cập nhật thông tin mới nhất về học tập
+                            </p>
+                        </div>
+                        <div style="flex-shrink: 0;">
+                            <a href="https://moet.gov.vn/page/sitemapPortal" class="btn-glow" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px;">
+                                Ấn vào để xem <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </section> 
+        </section>
+
+    </div>
+    <section id="roadmap" class="page-section">
+    <header class="section-header">
+       <div style="margin-top: 40px; padding: 0 200px;">
+            <h2 class="gradient-text page-title">Lộ trình chinh phục thuật toán</h2>
+            <p class="page-subtitle">Kỷ luật kiến tạo tương lai</p>
+        </div>
+    </header>
+
+        <div class="roadmap-wrapper">
+            <div class="progress-container glass-card">
+                <h3><i class="fas fa-chart-line"></i> Tiến độ hiện tại</h3>
+                <div class="progress-bar-bg">
+                    <div id="total-progress" class="progress-bar-fill" style="width: 0%">0%</div>
+                </div>
+                <p id="progress-text">Bạn đã hoàn thành 0/6 nhiệm vụ.</p>
+            </div>
+
+            <div class="roadmap-grid">
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task1')">
+                    <div class="checkbox-circle" id="cb-task1"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 1: Nhập môn</h4>
+                        <p>Cấu trúc CT, Biến, If-Else, Vòng lặp.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task2')">
+                    <div class="checkbox-circle" id="cb-task2"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 2: Mảng & Chuỗi</h4>
+                        <p>Mảng 1 chiều, 2 chiều, String C++.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task3')">
+                    <div class="checkbox-circle" id="cb-task3"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 3: Hàm & Đệ quy</h4>
+                        <p>Hàm con, Tham chiếu, Quy hoạch động cơ bản.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task4')">
+                    <div class="checkbox-circle" id="cb-task4"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 4: Cấu trúc dữ liệu</h4>
+                        <p>Vector, Set, Map, Stack, Queue.</p>
+                    </div>
+                </div>
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task5')">
+                    <div class="checkbox-circle" id="cb-task5"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 5: Thuật toán số học</h4>
+                        <p>Sàng nguyên tố, UCLN, Lũy thừa nhanh.</p>
+                    </div>
+                </div>
+                <div class="glass-card roadmap-item" onclick="toggleTask(this, 'task6')">
+                    <div class="checkbox-circle" id="cb-task6"></div>
+                    <div class="roadmap-content">
+                        <h4>Level 6: Đồ thị cơ bản</h4>
+                        <p>DFS, BFS, Đường đi ngắn nhất.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Cộng đồng sinh học.</p>
+        <div class="social-icons">
+            <i class="fab fa-facebook icon-fb"></i>
+            <i class="fab fa-github icon-gh"></i>
+            <i class="fab fa-discord icon-dc"></i>
+        </div>
+    </footer>
+    <script>
+        // JS điều khiển thanh Scroll Watcher
+        const scrollWatcher = document.querySelector('.scroll-watcher');
+
+        window.addEventListener('scroll', () => {
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            // Ngăn lỗi chia cho 0 nếu trang quá ngắn
+            if (totalHeight > 0) {
+                const scrolled = (window.scrollY / totalHeight) * 100;
+                scrollWatcher.style.width = `${scrolled}%`;
+            } else {
+                scrollWatcher.style.width = '0%';
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

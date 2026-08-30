@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBioAI - Trợ lý Công nghệ Sinh học</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+      window.MathJax = {
+        tex: { 
+            inlineMath: [['$', '$'], ['\\(', '\\)']], 
+            displayMath: [['$$', '$$'], ['\\[', '\\]']] 
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="chat-mode">
+     <!-- Nền động Sinh học: Tế bào có nhân và màng -->
+     <div class="biology-background">
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+    </div>
+
+    <nav id="navbar">
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="fa-solid fa-dna"></i>
+                HBio&nbsp;<span class="ai-badge">AI</span>
+            </div>
+        </header>
+    </nav>
+    
+    <div class="main-layout">
+        <div class="chat-wrapper glass-card">
+
+            <div id="chat-container">
+                
+                <div id="welcome-screen" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; padding-top: 50px; text-align: center; animation: fadeInUp 0.8s ease; width: 100%;">
+                    
+                    <div class="glow-logo" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 20px; filter: drop-shadow(0 0 20px rgba(46,204,113,0.4));">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #fff;">HBioAI Studio</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">Trợ lý Công nghệ Sinh học của bạn. Hôm nay tôi có thể giúp gì?</p>
+                    
+                    <div class="suggestion-grid">
+                        <div class="suggest-card glass-card" data-prompt="Hãy giải thích chi tiết quá trình phiên mã và dịch mã trong tổng hợp Protein: \n\n">
+                            <i class="fa-solid fa-dna text-sub"></i>
+                            <h4>Di truyền học</h4>
+                            <p>Phân tích DNA, RNA, Protein</p>
+                        </div>
+                        <div class="suggest-card glass-card" data-prompt="Liệt kê sự khác biệt chính giữa tế bào nhân thực (Eukaryote) và tế bào nhân sơ (Prokaryote): \n\n">
+                            <i class="fa-solid fa-bacterium text-sub"></i>
+                            <h4>Tế bào học</h4>
+                            <p>Cấu trúc và chức năng tế bào</p>
+                        </div>
+                        <div class="suggest-card glass-card" data-prompt="Ứng dụng của công nghệ CRISPR-Cas9 trong y học hiện đại là gì? \n\n">
+                            <i class="fa-solid fa-vial-virus text-sub"></i>
+                            <h4>Công nghệ sinh học</h4>
+                            <p>CRISPR, PCR, Nuôi cấy mô</p>
+                        </div>
+                        <div class="suggest-card glass-card" data-prompt="Hãy trình bày chu trình Krebs (chu trình axit citric) và năng lượng ATP tạo ra: \n\n">
+                            <i class="fa-solid fa-leaf text-sub"></i>
+                            <h4>Hóa sinh học</h4>
+                            <p>Chuyển hóa chất và năng lượng</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="input-container">
+                <div id="file-preview-container" style="display: none; padding: 8px 15px; margin-bottom: 10px; border-radius: 12px; align-items: center; justify-content: space-between; width: fit-content; min-width: 200px; background: rgba(46, 204, 113, 0.1); border: 1px solid var(--primary-color);">
+                    <span id="file-name-display" style="font-size: 0.9rem; color: var(--text-main); font-family: var(--font-code); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">
+                        <i class="fa-solid fa-file"></i>
+                    </span>
+                    <button id="btn-remove-file" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 10px; font-size: 1.1rem; transition: transform 0.2s;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="input-box">
+                    <label for="file-input" class="btn-glow-small btn-attach">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-input" style="display: none;" accept="image/*, application/pdf, text/plain, .docx, .csv">
+                    
+                    <textarea id="chat-input" placeholder="Nhập câu hỏi sinh học hoặc đính kèm tài liệu..." rows="1"></textarea>
+                    
+                    <button id="btn-send" class="btn-glow-small">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

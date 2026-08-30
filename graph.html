@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên Đề Đồ Thị Toàn Tập - Nâng Cao</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .indent-section {
+            padding-left: 35px;
+            border-left: 1px solid rgba(16, 185, 129, 0.2);
+            margin: 20px 0 35px 15px;
+        }
+        .math-concept {
+            font-family: 'Fira Code', monospace;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .deep-explain {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            display: block;
+        }
+        .highlight-text {
+            color: var(--primary-light);
+            font-weight: bold;
+        }
+        .algo-box {
+            margin-top: 25px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <button onclick="history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Quay lại
+    </button>
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 60px;">
+            <a href="index.html" style="color: var(--primary-color); text-decoration: none; float: left; transition: 0.3s;"></a>
+            <h1 class="gradient-text" style="font-size: 3.5rem;">CHUYÊN ĐỀ ĐỒ THỊ CƠ BẢN</h1>
+            <p style="color: var(--primary-color); font-family: var(--font-code); letter-spacing: 2px;">GRAPH THEORY & ALGORITHMS</p>
+        </header>
+
+        <section class="card">
+            <h2 class="section-title">I. Định Nghĩa Và Các Thành Phần Cốt Lõi</h2>
+            <div class="indent-section">
+                <p>Một đồ thị <span class="math-concept">G = (V, E)</span> là một cấu trúc dữ liệu trừu tượng. Trong đó:</p>
+                <ul>
+                    <li><span class="highlight-text">V (Vertices):</span> Tập hợp các điểm được gọi là đỉnh. Số lượng đỉnh ký hiệu là <span class="math-concept">|V|</span> hoặc <span class="math-concept">n</span>.</li>
+                    <li><span class="highlight-text">E (Edges):</span> Tập hợp các cặp đỉnh nối với nhau. Số lượng cạnh ký hiệu là <span class="math-concept">|E|</span> hoặc <span class="math-concept">m</span>.</li>
+                </ul>
+
+                <h3 style="color: var(--primary-color);">1. Phân loại đồ thị sâu hơn</h3>
+                <div class="indent-section">
+                    <p><span class="highlight-text">A. Đơn đồ thị (Simple Graph):</span> Giữa hai đỉnh bất kỳ chỉ có tối đa một cạnh nối và không có "khuyên" (cạnh nối đỉnh với chính nó).</p>
+                    <p><span class="highlight-text">B. Đa đồ thị (Multigraph):</span> Cho phép có nhiều cạnh nối giữa cùng một cặp đỉnh. Điều này thường xuất hiện trong các bài toán mạng giao thông (nhiều con đường giữa 2 thành phố).</p>
+                    <p><span class="highlight-text">C. Đồ thị có hướng (Directed Graph):</span> Các cạnh có chiều xác định. Cạnh <span class="math-concept">(u, v)</span> khác hoàn toàn cạnh <span class="math-concept">(v, u)</span>.</p>
+                </div>
+
+                <h3 style="color: var(--primary-color);">2. Bậc và các định lý liên quan</h3>
+                <div class="indent-section">
+                    <p>Trong đồ thị vô hướng, <span class="highlight-text">Bậc của đỉnh v</span> ký hiệu là <span class="math-concept">deg(v)</span>. </p>
+                    <span class="deep-explain">Định lý bắt tay: Tổng bậc của tất cả các đỉnh luôn bằng 2 lần số cạnh (vì mỗi cạnh đóng góp 1 bậc cho mỗi đầu mút).</span>
+                    <p>Trong đồ thị có hướng:</p>
+                    <ul>
+                        <li><span class="highlight-text">Bán bậc vào (In-degree):</span> Số cung đi vào đỉnh.</li>
+                        <li><span class="highlight-text">Bán bậc ra (Out-degree):</span> Số cung đi ra khỏi đỉnh.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">II. Kỹ Thuật Lưu Trữ Và Tối Ưu Bộ Nhớ</h2>
+            <div class="indent-section">
+                <p>Mỗi cách biểu diễn dưới đây đều có ưu và nhược điểm riêng, việc chọn sai có thể dẫn đến lỗi <span class="highlight-text">Memory Limit Exceeded</span> hoặc <span class="highlight-text">Time Limit Exceeded</span>.</p>
+                
+                <h3 style="color: var(--primary-color);">1. Ma trận kề (Adjacency Matrix)</h3>
+                <div class="indent-section">
+                    <p>Sử dụng mảng hai chiều <span class="math-concept">A[V][V]</span>. Nếu có cạnh từ u đến v thì <span class="math-concept">A[u][v] = 1</span>.</p>
+                    <span class="deep-explain">Dùng khi số cạnh lớn (đồ thị dày), cần kiểm tra nhanh xem u và v có nối nhau không trong thời gian O(1).</span>
+                </div>
+
+                <h3 style="color: var(--primary-color);">2. Danh sách kề (Adjacency List)</h3>
+                <div class="indent-section">
+                    <p>Sử dụng một mảng các <code>vector</code> hoặc <code>list</code>. Mỗi dòng <span class="math-concept">adj[u]</span> chứa danh sách các đỉnh kề với u.</p>
+                    <span class="deep-explain">Đây là cách phổ biến nhất trong lập trình thi đấu vì chỉ tốn O(V + E) bộ nhớ.</span>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header"><span>Khai báo danh sách kề C++</span></div>
+                    <div class="code-content">
+                        <pre><code><span style="color: #ff7b72;">vector</span>&lt;<span style="color: #ff7b72;">int</span>&gt; adj[<span style="color: #79c0ff;">100005</span>]; <span style="color: #8b949e;">// Mảng các vector để lưu danh sách kề</span>
+<span style="color: #ff7b72;">void</span> <span style="color: #d2a8ff;">addEdge</span>(<span style="color: #ff7b72;">int</span> u, <span style="color: #ff7b72;">int</span> v) {
+    adj[u].<span style="color: #d2a8ff;">push_back</span>(v);
+    adj[v].<span style="color: #d2a8ff;">push_back</span>(u); <span style="color: #8b949e;">// Nếu là đồ thị vô hướng</span>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">III. Thuật Toán Duyệt Theo Chiều Rộng (BFS)</h2>
+            <div class="indent-section">
+                <p>BFS (Breadth-First Search) hoạt động dựa trên nguyên lý "loang". Từ một đỉnh gốc, ta thăm tất cả các đỉnh kề nó, sau đó mới thăm các đỉnh xa hơn một mức.</p>
+                <h3 style="color: var(--primary-color);">Giải thích cơ chế:</h3>
+                <div class="indent-section">
+                    <ol>
+                        <li>Sử dụng một hàng đợi <span class="highlight-text">Queue</span> để quản lý các đỉnh sắp được thăm.</li>
+                        <li>Sử dụng mảng <span class="math-concept">visited[]</span> để đảm bảo mỗi đỉnh chỉ bị thăm một lần (tránh vòng lặp vô tận).</li>
+                        <li>Độ phức tạp: <span class="math-concept">O(V + E)</span>.</li>
+                    </ol>
+                    <span class="deep-explain">Lưu ý quan trọng: BFS luôn tìm được đường đi ngắn nhất giữa hai đỉnh trên đồ thị KHÔNG có trọng số.</span>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header"><span>BFS_Algorithm.cpp</span></div>
+                    <div class="code-content">
+<pre><code><span style="color: #ff7b72;">void</span> <span style="color: #d2a8ff;">bfs</span>(<span style="color: #ff7b72;">int</span> start, <span style="color: #ff7b72;">int</span> n) {
+    queue&lt;<span style="color: #ff7b72;">int</span>&gt; q;
+    q.<span style="color: #d2a8ff;">push</span>(start);
+    visited[start] = <span style="color: #79c0ff;">true</span>;
+
+    <span style="color: #ff7b72;">while</span> (!q.<span style="color: #d2a8ff;">empty</span>()) {
+        <span style="color: #ff7b72;">int</span> u = q.<span style="color: #d2a8ff;">front</span>(); q.<span style="color: #d2a8ff;">pop</span>();
+        <span style="color: #ff7b72;">for</span> (<span style="color: #ff7b72;">int</span> v : adj[u]) {
+            <span style="color: #ff7b72;">if</span> (!visited[v]) {
+                visited[v] = <span style="color: #79c0ff;">true</span>;
+                dist[v] = dist[u] + <span style="color: #79c0ff;">1</span>; <span style="color: #8b949e;">// Tính khoảng cách</span>
+                q.<span style="color: #d2a8ff;">push</span>(v);
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">IV. Thuật Toán Dijkstra Nâng Cao</h2>
+            <div class="indent-section">
+                <p>Đây là thuật toán "vàng" để tìm đường đi ngắn nhất trên đồ thị có trọng số không âm. Nó hoạt động theo cơ chế tham lam (Greedy).</p>
+                <h3 style="color: var(--primary-color);">Giải thích cặn kẽ:</h3>
+                <div class="indent-section">
+                    <p>Tại mỗi bước, thuật toán chọn một đỉnh <span class="math-concept">u</span> có khoảng cách từ nguồn là nhỏ nhất trong số các đỉnh chưa được "tối ưu hóa" hoàn toàn. Sau đó, nó thực hiện <span class="highlight-text">Thư giãn (Relaxation)</span> cho các cạnh đi ra từ <span class="math-concept">u</span>.</p>
+                    <span class="deep-explain">Phép thư giãn: Nếu <span class="math-concept">dist[v] > dist[u] + weight(u, v)</span> thì cập nhật <span class="math-concept">dist[v] = dist[u] + weight(u, v)</span>.</span>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header"><span>Dijkstra_PriorityQueue.cpp</span></div>
+                    <div class="code-content">
+<pre><code><span style="color: #ff7b72;">typedef</span> pair&lt;<span style="color: #ff7b72;">long long</span>, <span style="color: #ff7b72;">int</span>&gt; pll;
+<span style="color: #ff7b72;">void</span> <span style="color: #d2a8ff;">dijkstra</span>(<span style="color: #ff7b72;">int</span> s, vector&lt;pair&lt;<span style="color: #ff7b72;">int</span>, <span style="color: #ff7b72;">int</span>&gt;&gt; adj[]) {
+    priority_queue&lt;pll, vector&lt;pll&gt;, greater&lt;pll&gt;&gt; pq;
+    fill(dist, dist + n, <span style="color: #79c0ff;">1e18</span>); <span style="color: #8b949e;">// Khởi tạo vô cùng</span>
+    dist[s] = <span style="color: #79c0ff;">0</span>;
+    pq.<span style="color: #d2a8ff;">push</span>({<span style="color: #79c0ff;">0</span>, s});
+
+    <span style="color: #ff7b72;">while</span> (!pq.<span style="color: #d2a8ff;">empty</span>()) {
+        <span style="color: #ff7b72;">long long</span> d = pq.<span style="color: #d2a8ff;">top</span>().first;
+        <span style="color: #ff7b72;">int</span> u = pq.<span style="color: #d2a8ff;">top</span>().second;
+        pq.<span style="color: #d2a8ff;">pop</span>();
+
+        <span style="color: #ff7b72;">if</span> (d > dist[u]) <span style="color: #ff7b72;">continue</span>;
+
+        <span style="color: #ff7b72;">for</span> (<span style="color: #ff7b72;">auto</span> edge : adj[u]) {
+            <span style="color: #ff7b72;">int</span> v = edge.first, w = edge.second;
+            <span style="color: #ff7b72;">if</span> (dist[v] > dist[u] + w) {
+                dist[v] = dist[u] + w;
+                pq.<span style="color: #d2a8ff;">push</span>({dist[v], v});
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">V. Thuật Toán Kruskal Và Cấu Trúc DSU</h2>
+            <div class="indent-section">
+                <p>Bài toán Cây khung nhỏ nhất (MST) yêu cầu chọn ra <span class="math-concept">V - 1</span> cạnh sao cho tổng trọng số là nhỏ nhất và tất cả các đỉnh đều liên thông.</p>
+                <h3 style="color: var(--primary-color);">Tại sao dùng Kruskal?</h3>
+                <div class="indent-section">
+                    <p>Kruskal cực kỳ hiệu quả cho đồ thị thưa. Ý tưởng là sắp xếp toàn bộ cạnh theo trọng số tăng dần, sau đó lần lượt chọn cạnh nếu nó không tạo ra chu trình.</p>
+                    <span class="deep-explain">Để kiểm tra chu trình cực nhanh, ta sử dụng DSU (Disjoint Set Union) với kỹ thuật nén đường.</span>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header"><span>Kruskal_MST.cpp</span></div>
+                    <div class="code-content">
+<pre><code><span style="color: #ff7b72;">struct</span> Edge { <span style="color: #ff7b72;">int</span> u, v, w; };
+<span style="color: #ff7b72;">bool</span> <span style="color: #d2a8ff;">cmp</span>(Edge a, Edge b) { <span style="color: #ff7b72;">return</span> a.w < b.w; }
+
+<span style="color: #ff7b72;">int</span> <span style="color: #d2a8ff;">find</span>(<span style="color: #ff7b72;">int</span> v) {
+    <span style="color: #ff7b72;">return</span> (v == parent[v]) ? v : parent[v] = <span style="color: #d2a8ff;">find</span>(parent[v]);
+}
+
+<span style="color: #ff7b72;">void</span> <span style="color: #d2a8ff;">solveMST</span>() {
+    <span style="color: #d2a8ff;">sort</span>(edges.begin(), edges.end(), cmp);
+    <span style="color: #ff7b72;">for</span> (Edge e : edges) {
+        <span style="color: #ff7b72;">int</span> rootU = <span style="color: #d2a8ff;">find</span>(e.u);
+        <span style="color: #ff7b72;">int</span> rootV = <span style="color: #d2a8ff;">find</span>(e.v);
+        <span style="color: #ff7b72;">if</span> (rootU != rootV) {
+            totalWeight += e.w;
+            parent[rootU] = rootV; <span style="color: #8b949e;">// Hợp nhất</span>
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 50px; padding-bottom: 30px; color: #475569; font-size: 0.85rem;">
+            &copy; 2026 Hệ thống học liệu Tin học &bull; Đồ Thị Toàn Tập 
+        </footer>
+    </div>
+
+</body>
+</html>
