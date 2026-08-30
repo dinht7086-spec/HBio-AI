@@ -669,22 +669,9 @@ document.addEventListener('DOMContentLoaded', () => {
         saveSessions(); 
 
         // --- HỆ THỐNG NHÂN VẬT AI (PERSONAS) ---
-        let systemInstruction = "Bạn là HBioAI, một chuyên gia hàng đầu về Công nghệ Sinh học, Di truyền học, Hóa sinh và Sinh học phân tử. Nhiệm vụ của bạn là giải đáp các thắc mắc chuyên sâu về sinh học một cách khoa học, chính xác. Nếu người dùng hỏi vấn đề không liên quan đến sinh học, y học hay khoa học sự sống, hãy lịch sự từ chối và hướng họ quay lại chủ đề Sinh học.";
+        let systemInstruction = "Bạn là HBioAI, một AI hỗ trợ trả lời thắc mắc về Công nghệ Sinh học, Di truyền học, Hóa sinh và Sinh học phân tử. Nhiệm vụ của bạn là giải đáp các thắc mắc chuyên sâu về sinh học một cách khoa học, chính xác. Nếu người dùng hỏi vấn đề không liên quan đến sinh học, y học hay khoa học sự sống, hãy lịch sự từ chối và hướng họ quay lại chủ đề Sinh học.";
         
         const personaSelect = document.getElementById('ai-persona-select');
-        if (personaSelect) {
-            switch(personaSelect.value) {
-                case 'teacher':
-                    systemInstruction = "Bạn là một Giảng viên IT tận tâm. Trách nhiệm của bạn là giải thích cặn kẽ từng dòng code, sử dụng ví dụ đời sống để minh họa. Tuyệt đối KHÔNG viết sẵn toàn bộ code giải hoàn chỉnh ngay lập tức, mà hãy đưa ra gợi ý từng bước để học viên tự suy nghĩ và hoàn thiện. Luôn giữ thái độ khuyến khích.";
-                    break;
-                case 'senior':
-                    systemInstruction = "Bạn là một Senior Developer 10 năm kinh nghiệm. Hãy trả lời cực kỳ ngắn gọn, chuyên nghiệp và đi thẳng vào vấn đề. Cung cấp code tối ưu nhất (Clean Code, SOLID, Design Patterns) và chỉ giải thích những chỗ thực sự phức tạp. Không nói vòng vo dài dòng.";
-                    break;
-                case 'bughunter':
-                    systemInstruction = "Bạn là một chuyên gia bảo mật và tối ưu hiệu năng (Bug Hunter). Nhiệm vụ của bạn là soi thật kỹ đoạn code được gửi, tìm ra các lỗ hổng bảo mật, lỗi logic (edge cases), rò rỉ bộ nhớ, và điểm yếu về độ phức tạp thuật toán (Big O). Cảnh báo nghiêm ngặt và đề xuất code vá lỗi.";
-                    break;
-            }
-        }
         const url = getApiUrl();
         if (!url) {
             removeLoading(loadingId);
@@ -1095,15 +1082,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!currentSession || currentSession.history.length === 0) return;
         
         // 2. Xác định nhân vật AI
-        let systemInstruction = "Bạn là HBioAI, một chuyên gia hàng đầu về Công nghệ Sinh học, Di truyền học, Hóa sinh và Sinh học phân tử. Nhiệm vụ của bạn là giải đáp các thắc mắc chuyên sâu về sinh học một cách khoa học, chính xác. Nếu người dùng hỏi vấn đề không liên quan đến sinh học, y học hay khoa học sự sống, hãy lịch sự từ chối và hướng họ quay lại chủ đề Sinh học.";
+        let systemInstruction = "Bạn là HBioAI, một AI hỗ trợ trả lời thắc mắc về Công nghệ Sinh học, Di truyền học, Hóa sinh và Sinh học phân tử. Nhiệm vụ của bạn là giải đáp các thắc mắc chuyên sâu về sinh học một cách khoa học, chính xác. Nếu người dùng hỏi vấn đề không liên quan đến sinh học, y học hay khoa học sự sống, hãy lịch sự từ chối và hướng họ quay lại chủ đề Sinh học.";
         const personaSelect = document.getElementById('ai-persona-select');
-        if (personaSelect) {
-            switch(personaSelect.value) {
-                case 'teacher': sysInstr = "Bạn là một Giảng viên IT tận tâm. Trách nhiệm của bạn là giải thích cặn kẽ từng dòng code... Tuyệt đối KHÔNG đưa code giải hoàn chỉnh ngay lập tức."; break;
-                case 'senior': sysInstr = "Bạn là một Senior Developer 10 năm kinh nghiệm. Trả lời cực kỳ ngắn gọn, chuyên nghiệp và đi thẳng vào vấn đề."; break;
-                case 'bughunter': sysInstr = "Bạn là một chuyên gia bảo mật và Bug Hunter. Tập trung soi lỗi bảo mật, edge cases và tối ưu Big O."; break;
-            }
-        }
 
         // 3. Bật khóa UI và hiện nút Dừng
         isGenerating = true;
