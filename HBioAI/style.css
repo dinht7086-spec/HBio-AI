@@ -2359,3 +2359,93 @@ body.chat-mode {
     0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(-10%, 10%); }
     100% { border-radius: 30% 70% 70% 30% / 30% 60% 40% 70%; transform: translate(10%, -10%); }
 }
+
+/* =========================================
+   TỐI ƯU HIỂN THỊ MARKDOWN (BẢN MẠNH - ÉP KIỂU)
+   ========================================= */
+
+/* 1. Ép thụt lề và hiện lại dấu chấm cho danh sách */
+.message-content ul {
+    padding-left: 35px !important;
+    list-style-type: disc !important;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
+}
+
+.message-content ol {
+    padding-left: 35px !important;
+    list-style-type: decimal !important;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
+}
+
+.message-content li {
+    margin-bottom: 10px !important;
+    line-height: 1.7 !important;
+    padding-left: 5px !important;
+}
+
+/* Danh sách lồng nhau (Sub-lists) */
+.message-content ul ul,
+.message-content ol ol,
+.message-content ul ol,
+.message-content ol ul {
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+    list-style-type: circle !important; 
+}
+
+/* 2. Làm tiêu đề to, nổi bật và có gạch chân */
+.message-content h1, 
+.message-content h2, 
+.message-content h3 {
+    color: var(--primary-color) !important;
+    font-weight: 800 !important;
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4 !important;
+}
+
+.message-content h1 {
+    font-size: 1.8rem !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    padding-bottom: 10px !important;
+}
+
+.message-content h2 {
+    font-size: 1.5rem !important;
+    border-bottom: 1px dashed rgba(16, 185, 129, 0.4) !important;
+    padding-bottom: 8px !important;
+}
+
+.message-content h3 {
+    font-size: 1.25rem !important;
+    color: #fff !important; /* Đổi màu h3 thành trắng để phân cấp */
+}
+
+/* 3. Chữ in đậm và khoảng cách đoạn văn */
+.message-content strong {
+    color: #34d399 !important; /* In đậm sẽ có màu xanh ngọc sáng */
+    font-weight: 800 !important;
+}
+
+.message-content p {
+    margin-bottom: 15px !important;
+    line-height: 1.7 !important;
+}
+
+/* 4. Tối ưu Công thức MathJax (Giữ nguyên) */
+.message-content mjx-container {
+    color: #fbbf24 !important; 
+    font-size: 1.1em !important;
+    padding: 5px 0;
+}
+.message-content mjx-container[display="true"] {
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(251, 191, 36, 0.3) !important;
+    margin: 15px 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
