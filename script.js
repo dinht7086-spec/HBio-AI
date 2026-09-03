@@ -738,4 +738,116 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById(id);
         if (el) el.remove();
     }
+
+    // ==========================================
+// TÍCH HỢP GỬI FORM HỖ TRỢ LÊN GOOGLE SHEETS
+// ==========================================
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3xQOnsRmr7v1l0Ef1UQYJW0OoqnD_D3Z4RI17FMQ5CeQ0k9pPWrPrUE4qjUKIgPEJ/exec'; // Nhớ thay URL của bạn vào đây
+
+async function handleSupport(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    // Đổi trạng thái nút bấm
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+    submitBtn.disabled = true;
+
+    // Đã đổi tên biến thành supportFileInput
+    const supportFileInput = document.getElementById('fileInput');
+    let fileData = null;
+    let fileName = null;
+    let mimeType = null;
+
+    if (supportFileInput && supportFileInput.files.length > 0) {
+        const file = supportFileInput.files[0];
+        fileName = file.name;
+        mimeType = file.type;
+        const base64Full = await getBase64(file);
+        fileData = base64Full.split(',')[1]; 
+    }
+
+    const payload = {
+        name: form.name.value,
+        contact: form.contact.value,
+        category: form.category.value,
+        message: form.message.value,
+        fileName: fileName,
+        mimeType: mimeType,
+        fileData: fileData
+    };
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        if (result.result === 'success') {
+            alert('Gửi yêu cầu thành công! Cảm ơn bạn.');
+            form.reset();
+            removeSelectedFile(); 
+        } else {
+            alert('Lỗi hệ thống: ' + result.error);
+        }
+    } catch (error) {
+        alert('Lỗi kết nối mạng, vui lòng thử lại sau.');
+    } finally {
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi Yêu Cầu';
+        submitBtn.disabled = false;
+    }
+}
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+// Xử lý giao diện: Đã đổi toàn bộ tên biến tránh xung đột
+const supportDropZone = document.getElementById('dropZone');
+const supportFileInputDOM = document.getElementById('fileInput');
+const supportFileNameDisplay = document.getElementById('fileNameDisplay');
+const supportFileNameText = document.getElementById('fileNameText');
+
+if (supportDropZone && supportFileInputDOM) {
+    supportDropZone.addEventListener('click', () => supportFileInputDOM.click());
+    
+    supportFileInputDOM.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            supportFileNameText.textContent = this.files[0].name;
+            supportFileNameDisplay.style.display = 'flex';
+        }
+    });
+
+    supportDropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        supportDropZone.style.borderColor = '#10b981';
+    });
+
+    supportDropZone.addEventListener('dragleave', () => {
+        supportDropZone.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+    });
+
+    supportDropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        supportDropZone.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        if (e.dataTransfer.files.length > 0) {
+            supportFileInputDOM.files = e.dataTransfer.files;
+            supportFileNameText.textContent = supportFileInputDOM.files[0].name;
+            supportFileNameDisplay.style.display = 'flex';
+        }
+    });
+}
+
+function removeSelectedFile() {
+    const fileInp = document.getElementById('fileInput');
+    const fileDisp = document.getElementById('fileNameDisplay');
+    if (fileInp) fileInp.value = '';
+    if (fileDisp) fileDisp.style.display = 'none';
+}
 });
