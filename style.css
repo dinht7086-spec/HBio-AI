@@ -2298,12 +2298,11 @@ body.chat-mode {
     border-color: rgba(16, 185, 129, 0.8); /* Viền huy hiệu sáng lên */
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); /* Phát sáng mạnh hơn */
 }
-
 .biology-background {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -1;
-    background: linear-gradient(135deg, #0f2027, #203a43, #1c414f); 
+    background: linear-gradient(135deg, #1c393b, #102e36, #092132); 
     overflow: hidden;
 }
 
