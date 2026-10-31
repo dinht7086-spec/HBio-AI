@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071a15">
+    <meta name="description" content="HBioAI - Trợ lý AI hỗ trợ học tập và nghiên cứu khoa học sự sống.">
+    <title>HBioAI | Trợ lý Khoa học Sự sống</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Giữ nguyên các thư viện phục vụ Markdown, code highlighting và công thức khoa học -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="chat-mode">
+    <div class="biology-background" aria-hidden="true">
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="cell">
+            <div class="nucleus"></div>
+        </div>
+        <div class="bio-orbit bio-orbit-one"></div>
+        <div class="bio-orbit bio-orbit-two"></div>
+    </div>
+    <div class="main-layout" id="main-layout">
+        <aside class="chat-sidebar" id="chat-sidebar" aria-label="Bảng điều khiển HBioAI">
+            <div class="sidebar-brand">
+                <div class="brand-mark"><i class="fa-solid fa-dna"></i></div>
+                <div>
+                    <div class="brand-name">HBio<span>AI</span></div>
+                    <div class="brand-caption">LIFE SCIENCE ASSISTANT</div>
+                </div>
+                <button id="btn-toggle-sidebar" class="icon-button sidebar-collapse" type="button"
+                    aria-label="Thu gọn thanh bên" title="Thu gọn thanh bên">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+            </div>
+
+            <button id="btn-new-chat" class="new-chat-button" type="button">
+                <i class="fa-solid fa-plus"></i>
+                <span>Cuộc trò chuyện mới</span>
+            </button>
+
+            <section class="persona-section" aria-labelledby="persona-heading">
+                <div class="section-eyebrow" id="persona-heading">CHỌN CHUYÊN MÔN AI</div>
+                <label class="persona-select-wrap" for="ai-persona-select">
+                    <span class="persona-select-icon"><i class="fa-solid fa-microscope"></i></span>
+                    <select id="ai-persona-select" aria-label="Chọn vai trò của HBioAI">
+                        <option value="professor">Giáo sư khoa học sự sống</option>
+                        <option value="tutor">Gia sư</option>
+                        <option value="reviewer">Kiểm tra viên</option>
+                        <option value="auto">Tự động lựa chọn</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down persona-chevron"></i>
+                </label>
+                <p id="persona-description" class="persona-description">Giải thích sâu các khái niệm, cơ chế và ứng dụng
+                    trong khoa học sự sống.</p>
+            </section>
+
+            <div class="history-heading">
+                <span class="section-eyebrow">LỊCH SỬ TRÒ CHUYỆN</span>
+                <span class="history-local-badge"><i class="fa-solid fa-hard-drive"></i> Trên thiết bị</span>
+            </div>
+            <div id="history-list" class="history-list" aria-live="polite"></div>
+
+            <div class="sidebar-footer">
+                <div class="privacy-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <strong>Riêng tư trên thiết bị</strong>
+                        <span>Lịch sử được lưu trong trình duyệt này. Chưa cần tài khoản.</span>
+                    </div>
+                </div>
+                <div class="sidebar-version"><i class="fa-solid fa-leaf"></i> HBioAI · Life Science</div>
+            </div>
+        </aside>
+
+        <main class="chat-wrapper" id="chat-panel">
+            <header class="app-header">
+                <div class="header-main">
+                    <button id="btn-mobile-sidebar" class="icon-button mobile-menu-button" type="button"
+                        aria-label="Mở thanh bên">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <button id="btn-open-sidebar" class="header-brand-trigger" type="button"
+                        aria-label="Mở bảng điều khiển và lịch sử trò chuyện"
+                        title="Mở bảng điều khiển và lịch sử trò chuyện">
+                        <span class="header-title"><i class="fa-solid fa-dna"></i> HBioAI <span
+                                class="ai-badge">STUDIO</span></span>
+                        <span class="header-subtitle">Ấn nút mũi tên bên góc trái của trình duyệt để về trang chủ</span>
+                    </button>
+                </div>
+                <div class="header-actions">
+                    <label class="header-persona-select-wrap" for="header-persona-select" title="Chọn vai trò AI">
+                        <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+                        <select id="header-persona-select" aria-label="Chọn vai trò AI ở thanh trên">
+                            <option value="professor">Giáo sư khoa học sự sống</option>
+                            <option value="tutor">Gia sư</option>
+                            <option value="reviewer">Kiểm tra viên</option>
+                            <option value="auto">Tự động lựa chọn</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down persona-header-chevron" aria-hidden="true"></i>
+                    </label>
+                    <button id="btn-export-chat" class="icon-button header-action" type="button"
+                        title="Xuất cuộc trò chuyện" aria-label="Xuất cuộc trò chuyện">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </button>
+                    <button id="btn-settings" class="icon-button header-action" type="button"
+                        title="Cài đặt API Key cho chạy thử local" aria-label="Cài đặt API Key">
+                        <i class="fa-solid fa-key"></i>
+                    </button>
+                </div>
+            </header>
+
+            <section id="chat-container" aria-label="Nội dung trò chuyện">
+                <div id="welcome-screen" class="welcome-screen">
+                    <div class="welcome-icon"><i class="fa-solid fa-dna"></i><span class="welcome-icon-dot"></span>
+                    </div>
+                    <div class="welcome-kicker"><span></span> YOUR LIFE SCIENCE COMPANION <span></span></div>
+                    <h1>Khám phá sự sống<br><span>cùng HBioAI</span></h1>
+                    <p class="welcome-description">Đặt câu hỏi, phân tích tài liệu hoặc cùng AI tìm hiểu những cơ chế kỳ
+                        diệu của thế giới sống.</p>
+
+                    <div class="welcome-feature-row">
+                        <span><i class="fa-solid fa-circle-check"></i> Sinh học hiện đại</span>
+                        <span><i class="fa-solid fa-circle-check"></i> Giải thích có hệ thống</span>
+                        <span><i class="fa-solid fa-circle-check"></i> Học tập chủ động</span>
+                    </div>
+
+                    <div class="suggestion-grid">
+                        <button class="suggest-card" type="button"
+                            data-prompt="Hãy giải thích quá trình phiên mã và dịch mã trong tổng hợp protein, từ vai trò của từng thành phần đến ý nghĩa sinh học.">
+                            <span class="suggest-icon"><i class="fa-solid fa-dna"></i></span>
+                            <span class="suggest-card-text"><strong>Di truyền học phân tử</strong><small>DNA, RNA và
+                                    biểu hiện gene</small></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square suggest-arrow"></i>
+                        </button>
+                        <button class="suggest-card" type="button"
+                            data-prompt="So sánh tế bào nhân sơ và tế bào nhân thực theo cấu trúc, bào quan, vật chất di truyền và hoạt động sống.">
+                            <span class="suggest-icon"><i class="fa-solid fa-microscope"></i></span>
+                            <span class="suggest-card-text"><strong>Sinh học tế bào</strong><small>Cấu trúc và chức năng
+                                    tế bào</small></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square suggest-arrow"></i>
+                        </button>
+                        <button class="suggest-card" type="button"
+                            data-prompt="Giải thích nguyên lý CRISPR-Cas9, các bước chỉnh sửa gene và những giới hạn cần lưu ý trong ứng dụng thực tế.">
+                            <span class="suggest-icon"><i class="fa-solid fa-vial-circle-check"></i></span>
+                            <span class="suggest-card-text"><strong>Công nghệ sinh học</strong><small>CRISPR, PCR và
+                                    nuôi cấy mô</small></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square suggest-arrow"></i>
+                        </button>
+                        <button class="suggest-card" type="button"
+                            data-prompt="Trình bày chu trình Krebs, vị trí diễn ra, các chất tham gia và vai trò của chu trình trong chuyển hóa năng lượng.">
+                            <span class="suggest-icon"><i class="fa-solid fa-leaf"></i></span>
+                            <span class="suggest-card-text"><strong>Hóa sinh học</strong><small>Chuyển hóa và năng lượng
+                                    tế bào</small></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square suggest-arrow"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div id="input-container" class="composer-container">
+                <div class="composer-context"><i class="fa-solid fa-lightbulb"></i><span id="composer-hint">Hãy đặt câu
+                        hỏi về sinh học, y sinh và các ngành khoa học sự sống.</span></div>
+                <div id="file-preview-container" class="file-preview-container" style="display:none;">
+                    <span id="file-name-display"><i class="fa-solid fa-file"></i></span>
+                    <button id="btn-remove-file" type="button" aria-label="Xóa tệp đính kèm"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="input-box">
+                    <label for="file-input" class="composer-tool-button btn-attach"
+                        title="Đính kèm tài liệu hoặc hình ảnh" aria-label="Đính kèm tệp">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-input" hidden multiple
+                        accept="image/*,application/pdf,text/plain,.docx,.csv,.txt,.py,.js,.html,.css,.c,.cpp,.java">
+                    <textarea id="chat-input" rows="1"
+                        placeholder="Nhập câu hỏi khoa học sự sống hoặc đính kèm tài liệu..."></textarea>
+                    <button id="btn-mic" class="composer-tool-button" type="button" title="Nhập bằng giọng nói"
+                        aria-label="Nhập bằng giọng nói">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <button id="btn-send" class="send-button" type="button" aria-label="Gửi tin nhắn"
+                        title="Gửi tin nhắn">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button id="btn-stop" class="stop-button" type="button" style="display:none;"
+                        aria-label="Dừng tạo câu trả lời" title="Dừng">
+                        <i class="fa-solid fa-stop"></i>
+                    </button>
+                </div>
+                <div class="composer-footnote">HBioAI có thể mắc lỗi. Hãy kiểm chứng thông tin quan trọng bằng tài liệu
+                    khoa học đáng tin cậy.</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

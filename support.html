@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b211b">
+    <meta name="description" content="Gửi yêu cầu hỗ trợ hoặc đóng góp tài liệu cho cộng đồng Sinh học.">
+    <title>Hỗ trợ & Đóng góp | BioSphere</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="support-page">
+    <div class="biology-background" aria-hidden="true">
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+        <div class="cell"><div class="nucleus"></div></div>
+    </div>
+
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Trang chủ</a>
+
+    <main class="container support-container">
+        <header class="section-heading support-heading">
+            <span class="section-kicker"><i class="fa-solid fa-leaf"></i> KẾT NỐI CỘNG ĐỒNG</span>
+            <h1 class="gradient-text page-title">Trung tâm hỗ trợ</h1>
+            <p class="page-subtitle">Gửi câu hỏi, phản ánh hoặc chia sẻ tài liệu để cùng xây dựng thư viện Sinh học phong phú hơn.</p>
+        </header>
+
+        <div class="support-layout">
+            <aside class="glass-card support-info-card">
+                <div class="card-icon-wrapper icon-green"><i class="fa-solid fa-handshake-angle"></i></div>
+                <h2>Chúng tôi luôn lắng nghe</h2>
+                <p>Thông tin bạn gửi sẽ được lưu vào hệ thống để quản trị viên tiếp nhận và xử lý.</p>
+
+                <div class="support-contact-list">
+                    <a href="mailto:hbiosupport@gmail.com" class="support-contact-item">
+                        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                        <span><small>Email hỗ trợ</small><strong>hbiosupport@gmail.com</strong></span>
+                    </a>
+                    <a href="https://web.facebook.com/profile.php?id=61555823012605&locale=vi_VN" class="support-contact-item" target="_blank" rel="noopener noreferrer">
+                        <span class="contact-icon"><i class="fa-brands fa-facebook-f"></i></span>
+                        <span><small>Cộng đồng</small><strong>Fanpage Sinh học</strong></span>
+                    </a>
+                </div>
+
+                <div class="support-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <p>Thông tin liên hệ chỉ được sử dụng để phản hồi nội dung bạn gửi. Tệp đính kèm được lưu trong Google Drive của quản trị viên.</p>
+                </div>
+            </aside>
+
+            <section class="glass-card support-form-card" aria-labelledby="support-form-title">
+                <div class="form-heading">
+                    <div class="card-icon-wrapper icon-teal"><i class="fa-solid fa-paper-plane"></i></div>
+                    <div>
+                        <h2 id="support-form-title">Gửi thông tin</h2>
+                        <p>Các mục có dấu * là bắt buộc.</p>
+                    </div>
+                </div>
+
+                <form id="supportForm" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="supportName">Họ và tên <span>*</span></label>
+                            <input type="text" id="supportName" name="name" class="tool-input" placeholder="Nhập họ tên của bạn" maxlength="100" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="supportEmail">Email liên hệ <span>*</span></label>
+                            <input type="email" id="supportEmail" name="email" class="tool-input" placeholder="ban@example.com" maxlength="150" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supportPhone">Số điện thoại <small>(Không bắt buộc)</small></label>
+                        <input type="tel" id="supportPhone" name="phone" class="tool-input" placeholder="Số điện thoại để liên hệ khi cần" maxlength="30" autocomplete="tel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requestType">Bạn muốn thực hiện nội dung nào? <span>*</span></label>
+                        <div class="select-with-icon">
+                            <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
+                            <select id="requestType" name="requestType" class="tool-input" required>
+                                <option value="support">Gửi yêu cầu hỗ trợ / phản ánh</option>
+                                <option value="contribution">Đóng góp tài liệu học tập</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="supportFields" class="conditional-fields">
+                        <div class="form-group">
+                            <label for="supportCategory">Chủ đề cần hỗ trợ <span>*</span></label>
+                            <select id="supportCategory" name="supportCategory" class="tool-input" required>
+                                <option value="Báo lỗi website">Báo lỗi website</option>
+                                <option value="Thắc mắc nội dung">Thắc mắc nội dung học tập</option>
+                                <option value="Góp ý cải thiện">Góp ý cải thiện website</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="contributionFields" class="conditional-fields" hidden>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="resourceTitle">Tên tài liệu <span>*</span></label>
+                                <input type="text" id="resourceTitle" name="resourceTitle" class="tool-input" placeholder="Ví dụ: Chuyên đề Di truyền học" maxlength="180" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="resourceSubject">Chủ đề tài liệu</label>
+                                <select id="resourceSubject" name="resourceSubject" class="tool-input" disabled>
+                                    <option value="Sinh học tế bào">Sinh học tế bào</option>
+                                    <option value="Di truyền học">Di truyền học</option>
+                                    <option value="Sinh thái học">Sinh thái học</option>
+                                    <option value="Sinh lý học">Sinh lý học</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceUrl">Liên kết tài liệu <small>(Không bắt buộc, nếu tài liệu đã được đăng trực tuyến)</small></label>
+                            <input type="url" id="resourceUrl" name="resourceUrl" class="tool-input" placeholder="https://..." maxlength="1000" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supportMessage" id="messageLabel">Nội dung chi tiết <span>*</span></label>
+                        <textarea id="supportMessage" name="message" class="tool-input tool-textarea" rows="5" maxlength="5000" placeholder="Mô tả câu hỏi, vấn đề hoặc phản ánh của bạn..." required></textarea>
+                        <small class="field-hint" id="messageHint">Mô tả càng cụ thể, chúng tôi càng dễ hỗ trợ bạn.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fileInput">Tệp đính kèm <small>(Không bắt buộc)</small></label>
+                        <label class="upload-area" id="dropZone" for="fileInput" tabindex="0">
+                            <span class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                            <span class="upload-text">Chọn tệp hoặc kéo thả vào khu vực này</span>
+                            <span class="upload-hint">PDF, Word, PowerPoint, Excel, hình ảnh, TXT hoặc ZIP · Tối đa 5MB</span>
+                        </label>
+                        <input type="file" id="fileInput" class="visually-hidden" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,.jpg,.jpeg,.png,.zip">
+
+                        <div id="fileNameDisplay" class="file-chosen-info" hidden>
+                            <span class="file-info-icon"><i class="fa-solid fa-file-circle-check"></i></span>
+                            <span id="fileNameText">Tên tệp</span>
+                            <button type="button" class="remove-file" onclick="removeSelectedFile()" aria-label="Xóa tệp đã chọn">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p id="supportStatus" class="support-status" role="status" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-glow submit-support-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi thông tin
+                    </button>
+                    <p class="form-footnote"><i class="fa-solid fa-lock"></i> Dữ liệu được gửi đến Google Sheets và tệp đính kèm được lưu trong Google Drive.</p>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer support-footer">
+        <div class="footer-brand"><i class="fa-solid fa-dna"></i> Bio<span>Sphere</span></div>
+        <p>&copy; 2026 Cộng đồng Sinh học.</p>
+    </footer>
+
+    <iframe id="support-response-frame" name="supportResponseFrame" title="Kết quả gửi biểu mẫu" class="visually-hidden"></iframe>
+    <script src="script.js"></script>
+</body>
+</html>
